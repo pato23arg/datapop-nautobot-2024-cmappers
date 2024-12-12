@@ -21,7 +21,7 @@ sync_devices:
         parser: "none"
         jpath: 'interfaces[].subinterfaces[].{interface: @.name, ip: "address"[0].prefix}'
         #post_processor: '{{ {"interface": obj[0]["interface"], "ip": obj[0]["ip"].split("/")[0]} if obj and obj[0] else None }}'
-        post_processor: '{% for entry in obj %}{% if entry["ip"] %}{% if original_host in entry["ip"] %}{{ entry["interface"] | first }}{% endif %}{% endif %}{% endfor %}'
+        post_processor: '{% for entry in obj %}{% if entry["ip"] %}{% if original_host in entry["ip"] %}{{ entry["interface"] }}{% endif %}{% endif %}{% endfor %}'
   mask_length:
     commands:
       - command: "show interface all | as json"
