@@ -10,15 +10,11 @@ sync_devices:
       - command: "show version | as json"
         parser: "none"
         jpath: '"basic system info"[]."Serial Number"'
-        #post_processor: "{{ obj | unique | first }}"
-        #iterable_type: "str"
   device_type:
     commands:
       - command: "show version | as json"
         parser: "none"
         jpath: '"basic system info"[]."Chassis Type"'
-        #post_processor: "{{ obj | unique | first }}"
-        #iterable_type: "str"
   mgmt_interface:
     commands:
       - command: "show interface all | as json"
@@ -31,4 +27,3 @@ sync_devices:
         parser: "none"
         jpath: 'interfaces[].subinterfaces[].{interface: @.name, ip: "address"[0].prefix}'
         post_processor: '{{ obj[0]["ip"].split("/")[1] if obj and obj[0] and "/" in obj[0]["ip"] else None }}'
-        # iterable_type: "int"
