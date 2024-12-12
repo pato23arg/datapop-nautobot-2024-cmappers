@@ -4,19 +4,19 @@ sync_devices:
     commands:
       - command: "show version | as json"
         parser: "none"
-        jpath: '"basic system info"[]."Hostname"[].data'
+        jpath: '"basic system info"[]."Hostname"'
   serial:
     commands:
       - command: "show version | as json"
         parser: "none"
-        jpath: '"basic system info"[]."Serial Number"[].data'
+        jpath: '"basic system info"[]."Serial Number"'
         #post_processor: "{{ obj | unique | first }}"
         #iterable_type: "str"
   device_type:
     commands:
       - command: "show version | as json"
         parser: "none"
-        jpath: '"basic system info"[]."Chassis Type"[].data'
+        jpath: '"basic system info"[]."Chassis Type"'
         #post_processor: "{{ obj | unique | first }}"
         #iterable_type: "str"
   mgmt_interface:
